@@ -49,6 +49,64 @@ malcu/
 
 ---
 
+## 🛠 Tools
+
+### 🦅 SubRecon — Subdomain Enumeration Pipeline
+
+Passive recon multi-source + DNS resolution + port scan + auto report.
+
+**Sumber data:** subfinder, assetfinder, crt.sh, AlienVault OTX
+
+```bash
+# Basic scan
+./tools/recon/subrecon.sh target.com
+
+# Deep scan (tambah brute-force + permutasi)
+./tools/recon/subrecon.sh target.com --deep
+
+# Fast scan (hanya passive, skip brute)
+./tools/recon/subrecon.sh target.com --fast
+```
+
+**Dependensi:** subfinder, assetfinder, jq, httpx, naabu/nmap
+
+**Output:** `recon/<target>/` berisi:
+- `subdomains.txt` — semua subdomain hasil enum
+- `alive.txt` — subdomain live (HTTP/HTTPS)
+- `alive_full.txt` — subdomain live + status code + title + tech
+- `ports.txt` — open ports summary
+- `REPORT.md` — laporan ringkasan
+
+---
+
+### 🔥 PortRecon — Fast Port Scanner Wrapper
+
+3-phase pipeline: masscan (speed) → nmap (depth) → httpx (web detection)
+
+```bash
+# Default: top 1000 ports
+./tools/recon/portrecon.sh target.com
+
+# Full 65535 ports
+./tools/recon/portrecon.sh target.com --full
+
+# Stealth mode (slow, fragmented, harder to detect)
+./tools/recon/portrecon.sh target.com --stealth
+
+# Mass scan dari list target
+./tools/recon/portrecon.sh -l subs.txt
+```
+
+**Dependensi:** masscan, nmap, httpx
+
+**Output:** `recon/<target>/ports/` berisi:
+- `masscan.txt` — raw masscan output
+- `nmap.txt` — nmap service version detection
+- `web.txt` — HTTP services detected
+- `REPORT.md` — laporan ringkasan
+
+---
+
 ## 🚀 Quick Start
 
 ```bash
@@ -56,12 +114,18 @@ malcu/
 git clone git@github.com:muhammad194494-pixel/malcu.git
 cd malcu
 
+# Install Go tools (subfinder, assetfinder, httpx, naabu)
+./tools/recon/subrecon.sh --install-tools
+
+# Run subdomain enumeration
+./tools/recon/subrecon.sh example.com --deep
+
+# Run port scan on discovered subdomains
+./tools/recon/portrecon.sh -l recon/example.com/alive.txt
+
 # Setup lab environment
 cd labs/web-vuln
 docker-compose up -d
-
-# Run recon script
-tools/recon/fast-scan.sh example.com
 ```
 
 ---
