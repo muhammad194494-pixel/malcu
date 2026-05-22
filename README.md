@@ -14,15 +14,15 @@ malcu/
 ├── SOUL.md                    # Jiwa & prinsip inti Malcu
 ├── LICENSE                    # MIT License
 ├── .gitignore                 # Git ignore rules (no secrets!)
-├── tools/                     # Custom toolkit
+├── tools/                     # Custom security toolkit
 │   └── recon/                 # Reconnaissance tools
 │       ├── subrecon.sh        # Subdomain enumeration pipeline
 │       └── portrecon.sh       # Port scanner wrapper (masscan+nmap+httpx)
-├── labs/                      # Vulnerable lab environments
-├── ctf/                       # CTF writeups & solve scripts
-├── research/                  # Research notes & findings
-├── methodology/               # Pentest & bug bounty methodology
-└── cheatsheets/               # Quick reference guides
+├── labs/                      # Vulnerable lab environments (empty)
+├── ctf/                       # CTF writeups & solve scripts (empty)
+├── research/                  # Research notes & findings (empty)
+├── methodology/               # Pentest & bug bounty methodology (empty)
+└── cheatsheets/               # Quick reference guides (empty)
 ```
 
 ---
