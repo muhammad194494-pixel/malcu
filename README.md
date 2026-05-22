@@ -6,18 +6,23 @@
 
 ---
 
-## 📂 Repo Contents
+## 📂 Repo Structure
 
 ```text
 malcu/
-├── README.md                  # Dokumentasi utama
+├── README.md                  # Dokumentasi utama (kamu di sini)
 ├── SOUL.md                    # Jiwa & prinsip inti Malcu
 ├── LICENSE                    # MIT License
 ├── .gitignore                 # Git ignore rules (no secrets!)
-└── tools/                     # Custom toolkit
-    └── recon/                 # Reconnaissance tools
-        ├── subrecon.sh        # Subdomain enumeration pipeline
-        └── portrecon.sh       # Port scanner wrapper
+├── tools/                     # Custom toolkit
+│   └── recon/                 # Reconnaissance tools
+│       ├── subrecon.sh        # Subdomain enumeration pipeline
+│       └── portrecon.sh       # Port scanner wrapper (masscan+nmap+httpx)
+├── labs/                      # Vulnerable lab environments
+├── ctf/                       # CTF writeups & solve scripts
+├── research/                  # Research notes & findings
+├── methodology/               # Pentest & bug bounty methodology
+└── cheatsheets/               # Quick reference guides
 ```
 
 ---
@@ -96,15 +101,28 @@ Multi-source passive recon + DNS resolution + port scan + auto report generation
 ## 🚀 Quick Start
 
 ```bash
-# Clone repo
+# 1. Clone repo
 git clone git@github.com:muhammad194494-pixel/malcu.git
 cd malcu
 
-# Jalankan subdomain recon
+# 2. Install dependensi tools (Debian/Ubuntu)
+sudo apt install -y subfinder httpx naabu nmap masscan jq
+
+# 3. Jalankan subdomain recon
 ./tools/recon/subrecon.sh example.com --deep
 
-# Jalankan port scan pada subdomains yang ditemukan
+# 4. Jalankan port scan pada subdomains yang ditemukan
 ./tools/recon/portrecon.sh -l recon/example.com/alive.txt
+```
+
+### 📋 Recommended Workflow
+
+```
+SubRecon (--deep)  →  PortRecon (--full)  →  DirFuzz  →  Manual Testing
+     ↓                      ↓                    ↓
+  alive.txt            open ports            hidden dirs
+     ↓                      ↓                    ↓
+        └─────►  Cross-reference results  ◄─────┘
 ```
 
 ---
