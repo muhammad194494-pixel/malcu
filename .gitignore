@@ -1,0 +1,61 @@
+# OS
+.DS_Store
+Thumbs.db
+eagle.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+*.egg
+
+# Go
+*.exe
+*.test
+*.out
+
+# Node
+node_modules/
+.env
+.env.*
+
+# Secrets & Keys — NEVER COMMIT
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials.json
+secrets.yml
+*.secret
+id_rsa*
+
+# Docker
+*.log
+
+# Lab outputs / loot
+labs/*/loot/
+labs/*/output/
+labs/*/*.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.log
+
+# OSINT outputs
+recon_output/
+osint_results/
